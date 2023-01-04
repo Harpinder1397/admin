@@ -1,15 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Route, Switch } from 'react-router-dom';
+import PrivateRoute from './routes/PrivateRoute';
 import Login from './components/login'
-import { CommonTable } from './components/common/table';
 import MainLayout from './components/layout';
-
+import './App.css'
 
 function App() {
-
   return (
-      <MainLayout />
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <PrivateRoute
+        exact
+        path="/admin/:name"
+        component={MainLayout}
+      />
+    </Switch>
   )
 }
 

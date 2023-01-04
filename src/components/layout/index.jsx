@@ -1,11 +1,8 @@
 import React from 'react';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { useHistory } from 'react-router-dom';
 const { Header, Content, Sider } = Layout;
-const items1 = ['1', '2', '3'].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
 
 const list = [
   "Manage States",
@@ -33,9 +30,25 @@ const MainLayout = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const history = useHistory()
+
+  const items1 = ['Sign Out'].map((key) => ({
+    key,
+    label: `${key}`,
+    onClick: () => {
+      localStorage.clear();
+      history.push('/login')
+      
+      // localStorage.setItem("token", res?.token);
+      // localStorage.setItem("user", res?.user?._id);
+      // localStorage.setItem("userName", res?.user?.fullName);
+      // localStorage.setItem("userType", res?.user?.type);
+    }
+  }));
 
   const onClick = (e) => {
     console.log('click ', e);
+    history.push(`${e.key}`)
     setCurrent(e.key);
   };
   return (
