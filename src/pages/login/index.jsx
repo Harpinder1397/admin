@@ -16,10 +16,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     if(formData?.mobileNumber && formData?.password){
-      const payload = {
-        mobileNumber: Number(formData?.mobileNumber),
-        password: formData?.password
-      }
+      const payload = formData;
       const loginResponse = await LoginAPI(payload);
       if (loginResponse) {
         history.push('/admin/manage-states')
